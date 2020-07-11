@@ -1,0 +1,55 @@
+<resources>
+    <string name="play">Play</string>
+    <string name="instructions">Instructions</string>
+    <string name="options">Options</string>
+    <string name="cur_level">Level %1$d/%2$d</string>
+    <string name="cur_level_random">Level: %1$s</string>
+    <string name="instruction1">Press the individual cells of the grid to remove all colored cells in each level.</string>
+    <string name="instruction2">By clicking on a cell, the cell itself and the four surrounding reverse their colors.</string>
+    <string name="instruction3">Finish the game by completing all levels and getting 3 stars on each.</string>
+    <string name="instruction4">You get 3 stars when you mangage to complete the level with the least moves.</string>
+    <string name="reset_game">Reset the game</string>
+    <string name="valid_reset_game">Confirm the reset</string>
+    <string name="valid_reset_game_text">Are you sure you want to reset the game?</string>
+    <string name="title_instructions">Instructions</string>
+    <string name="title_choose_level">Levels</string>
+    <string name="title_options">Options</string>
+    <string name="txt_cancel_last_action">Cancel last move</string>
+    <string name="txt_go_next_level">Next level</string>
+    <string name="txt_restart_level">Restart level</string>
+    <string name="txt_regen_level">Regen level</string>
+    <string name="txt_go_menu">Go to menu</string>
+    <string name="txt_options">Options</string>
+    <string name="txt_instructions">Instructions</string>
+    <string name="txt_level_gen_random">Random level</string>
+    <string name="txt_random">Random</string>
+    <string name="txt_reset_done">Reset successful.</string>
+    <string name="reach_level_to_unlock">Reach this level to make it playable.</string>
+    <string name="reset_game_info">You will lose all your progression and take you back to level 1.</string>
+    <string name="title_congratulations">Congratulations!</string>
+    <string name="all_level_finished_txt">You have finished all levels.</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="level_beginner">Beginner</string>
+    <string name="level_easy">Easy</string>
+    <string name="level_medium">Medium</string>
+    <string name="level_difficult">Difficult</string>
+    <string name="level_expert">Expert</string>
+
+    <!-- Informations partagées par toutes les langues -->
+    <string name="app_name">Switch Color</string>
+    <!--<string name="adbuddiz_key" translatable="false">272814d8-60b4-4c9f-9fb9-eae023fd61cb</string>-->
+    <string name="logo_switch_color">Switch Color Logo</string>
+    <string name="niveau_x_y">Level X/Y</string>
+    <string name="menu">Menu</string>
+
+    <string-array name="levels" translatable="false">
+        <item>@string/level_beginner</item>
+        <item>@string/level_easy</item>
+        <item>@string/level_medium</item>
+        <item>@string/level_difficult</item>
+        <item>@string/level_expert</item>
+    </string-array>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/txt_cancel_last_action"
+        android:id="@+id/btn_cancel_last_action"
+        android:icon="@drawable/icon_cancel_last_action" />
+
+    <item
+        android:title="@string/txt_go_next_level"
+        android:id="@+id/btn_go_next_level"
+        android:icon="@drawable/icon_go_next_level" />
+
+    <item
+        android:title="@string/txt_restart_level"
+        android:id="@+id/btn_restart_level"
+        android:icon="@drawable/icon_restart_level"/>
+
+    <item
+        android:title="@string/txt_regen_level"
+        android:id="@+id/btn_regen_level"
+        android:icon="@drawable/icon_regen_level"/>
+
+    <item
+        android:title="@string/txt_go_menu"
+        android:id="@+id/btn_go_menu"
+        android:icon="@drawable/icon_go_menu" />
+</menu>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btn_level_beginner"
+        android:title="@string/level_beginner" />
+
+    <item
+        android:id="@+id/btn_level_easy"
+        android:title="@string/level_easy" />
+
+    <item
+        android:id="@+id/btn_level_medium"
+        android:title="@string/level_medium" />
+
+    <item
+        android:id="@+id/btn_level_difficult"
+        android:title="@string/level_difficult" />
+
+    <item
+        android:id="@+id/btn_level_expert"
+        android:title="@string/level_expert" />
+</menu>
