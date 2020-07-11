@@ -42,8 +42,7 @@
         android:layout_height="wrap_content"
         android:text="@string/reset_game"
         android:id="@+id/btn_reset"
-        android:textSize="20sp"
-        style="@style/btn_reset" />
+        style="@style/btn_big" />
 
     <TextView
         android:layout_width="wrap_content"
