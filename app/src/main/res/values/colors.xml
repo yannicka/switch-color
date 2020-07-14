@@ -3,6 +3,7 @@
     <color name="colorPrimary">#43c69d</color>
     <color name="colorPrimaryDark">#269d78</color>
     <color name="colorAccent">#fc9549</color>
+
     <color name="bg_activities">#fff5f0ea</color>
     <color name="text_color">#ffffffff</color>
 </resources>

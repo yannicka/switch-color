@@ -40,7 +40,6 @@
 
     <!-- Informations partagées par toutes les langues -->
     <string name="app_name">Switch Color</string>
-    <!--<string name="adbuddiz_key" translatable="false">272814d8-60b4-4c9f-9fb9-eae023fd61cb</string>-->
     <string name="logo_switch_color">Switch Color Logo</string>
     <string name="niveau_x_y">Level X/Y</string>
     <string name="menu">Menu</string>
