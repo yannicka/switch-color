@@ -2,45 +2,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pifyz.switchcolor.FinalActivity"
     android:background="@color/bg_activities"
-    android:padding="12dp">
+    android:padding="12dp"
+    tools:context="com.pifyz.switchcolor.FinalActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_congratulations"
         android:id="@+id/textView"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="#FF964A"
-        android:textSize="40dp"
-        android:singleLine="false" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vous avez fini tous les niveaux !"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:singleLine="false"
+        android:text="@string/title_congratulations"
+        android:textColor="#FF964A"
+        android:textSize="40dp" />
+
+    <TextView
         android:id="@+id/textView2"
-        android:textSize="26dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
         android:layout_below="@+id/textView"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignRight="@+id/textView"
         android:gravity="center"
-        android:textColor="#444444" />
+        android:text="Vous avez fini tous les niveaux !"
+        android:textColor="#444444"
+        android:textSize="26dp" />
 
     <Button
+        android:id="@+id/btn_go_menu"
+        style="@style/btn_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retourner au menu"
-        android:id="@+id/btn_go_menu"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
-        style="@style/btn_big" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:text="Retourner au menu" />
 </RelativeLayout>

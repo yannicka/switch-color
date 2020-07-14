@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/menu_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/bg_activities"
-    android:id="@+id/menu_layout">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#36423E">
+        android:background="#36423E"
+        android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_back"
-            android:src="@drawable/btn_back_states"
-            android:background="@null"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="12dp"
             android:layout_marginRight="12dp"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginBottom="12dp"
+            android:background="@null"
+            android:src="@drawable/btn_back_states" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_choose_level"
-            android:textSize="26dp"
-            android:textColor="#ffffff"
             android:layout_gravity="center_vertical"
-            android:singleLine="false"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="12dp"
-            android:layout_marginLeft="8dp" />
+            android:singleLine="false"
+            android:text="@string/title_choose_level"
+            android:textColor="#ffffff"
+            android:textSize="26dp" />
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_random_level"
+        style="@style/btn_big"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txt_random"
-        android:id="@+id/btn_random_level"
         android:layout_gravity="center_horizontal"
-        style="@style/btn_big" />
+        android:text="@string/txt_random" />
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnWidth="68dp"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="8dp"
-        android:horizontalSpacing="8dp"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
-        android:scrollingCache="true"
-        android:scrollbars="none"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp"
+        android:columnWidth="68dp"
+        android:gravity="center"
+        android:horizontalSpacing="8dp"
+        android:numColumns="auto_fit"
+        android:scrollbars="none"
+        android:scrollingCache="true"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="8dp" />
 
 </LinearLayout>

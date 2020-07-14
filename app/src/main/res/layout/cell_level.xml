@@ -6,24 +6,24 @@
     android:padding="5dp">
 
     <TextView
+        android:id="@+id/txt_level"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:id="@+id/txt_level"
-        android:singleLine="false"
+        android:layout_gravity="center"
+        android:background="#999999"
+        android:clickable="false"
         android:gravity="center_vertical|center_horizontal"
-        android:textSize="20dp"
+        android:singleLine="false"
         android:text="55"
         android:textColor="@color/bg_activities"
-        android:clickable="false"
-        android:background="#999999"
-        android:layout_gravity="center" />
+        android:textSize="20dp" />
 
     <ImageView
+        android:id="@+id/medal_img"
         android:layout_width="52dp"
         android:layout_height="16dp"
-        android:id="@+id/medal_img"
-        android:background="@drawable/stars_3"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-8dp" />
+        android:layout_marginTop="-8dp"
+        android:background="@drawable/stars_3" />
 
 </LinearLayout>

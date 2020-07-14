@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/bg_activities"
     android:baselineAligned="false"
-    android:background="@color/bg_activities">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#36423E"
         android:layout_marginBottom="6dp"
+        android:background="#36423E"
         android:padding="12dp">
 
         <TextView
+            android:id="@+id/cur_level"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:id="@+id/cur_level"
-            android:textSize="24sp"
-            android:textColor="#ffffff"
-            android:text="@string/niveau_x_y"
-            android:layout_gravity="center_vertical"
-            android:layout_toStartOf="@+id/open_actions"
-            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_marginEnd="12dp" />
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="12dp"
+            android:layout_toStartOf="@+id/open_actions"
+            android:text="@string/niveau_x_y"
+            android:textColor="#ffffff"
+            android:textSize="24sp" />
 
         <ImageButton
+            android:id="@+id/open_actions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/open_actions"
-            android:background="@null"
-            android:adjustViewBounds="true"
             android:layout_alignBottom="@+id/cur_level"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/btn_open_options_menu"
-            android:scaleType="fitEnd"
             android:layout_centerVertical="true"
-            android:contentDescription="@string/menu" />
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:contentDescription="@string/menu"
+            android:scaleType="fitEnd"
+            android:src="@drawable/btn_open_options_menu" />
     </RelativeLayout>
 
     <view
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
         android:id="@+id/game_view"
         class="com.pifyz.switchcolor.GameView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_gravity="bottom"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
