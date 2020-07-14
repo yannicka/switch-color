@@ -15,8 +15,8 @@ public class FinalActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_final);
 
-        Button btn_go_menu = findViewById(R.id.btn_go_menu);
-        btn_go_menu.setOnClickListener(new View.OnClickListener() {
+        Button btnGoMenu = findViewById(R.id.btn_go_menu);
+        btnGoMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FinalActivity.this, MenuActivity.class);

@@ -35,7 +35,7 @@ public class CellLevelAdapter extends BaseAdapter {
 
             holder = new RecordHolder();
             holder.text = convertView.findViewById(R.id.txt_level);
-            holder.medal_img = convertView.findViewById(R.id.medal_img);
+            holder.medalImg = convertView.findViewById(R.id.medal_img);
             convertView.setTag(holder);
         } else {
             holder = (RecordHolder) convertView.getTag();
@@ -45,19 +45,19 @@ public class CellLevelAdapter extends BaseAdapter {
 
         switch (MenuActivity.prefs.getString("medals", "").charAt(position)) {
             case '3':
-                holder.medal_img.setBackgroundResource(R.drawable.stars_3);
+                holder.medalImg.setBackgroundResource(R.drawable.stars_3);
                 break;
 
             case '2':
-                holder.medal_img.setBackgroundResource(R.drawable.stars_2);
+                holder.medalImg.setBackgroundResource(R.drawable.stars_2);
                 break;
 
             case '1':
-                holder.medal_img.setBackgroundResource(R.drawable.stars_1);
+                holder.medalImg.setBackgroundResource(R.drawable.stars_1);
                 break;
 
             default:
-                holder.medal_img.setBackgroundResource(R.drawable.stars_0);
+                holder.medalImg.setBackgroundResource(R.drawable.stars_0);
         }
 
         if (MenuActivity.prefs.getString("levels", "").charAt(position) == '1') {
@@ -71,6 +71,6 @@ public class CellLevelAdapter extends BaseAdapter {
 
     public static class RecordHolder {
         public TextView text;
-        public ImageView medal_img;
+        public ImageView medalImg;
     }
 }

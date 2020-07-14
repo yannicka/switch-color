@@ -14,8 +14,8 @@ public class InstructionsActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_instructions);
 
-        ImageButton btn_back = findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(new View.OnClickListener() {
+        ImageButton btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }

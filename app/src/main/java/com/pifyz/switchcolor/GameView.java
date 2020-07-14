@@ -15,15 +15,11 @@ import java.util.Random;
 public class GameView extends View {
     public Grid grid;
 
-    protected Paint p;
-    protected ParticleSystem particles;
-    protected Medal medal;
-    protected OnWinLevelListener onWinLevel;
-    protected int tx, ty;
-
-    interface OnWinLevelListener {
-        boolean onWinLevel(View v, int level);
-    }
+    private Paint p;
+    private ParticleSystem particles;
+    private Medal medal;
+    private OnWinLevelListener onWinLevel;
+    private int tx, ty;
 
     public GameView(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
@@ -33,10 +29,10 @@ public class GameView extends View {
         particles = new ParticleSystem();
         medal = null;
 
-        if (MenuActivity.cur_level >= 0) {
-            grid = MenuActivity.grids.get(MenuActivity.cur_level);
+        if (MenuActivity.curLevel >= 0) {
+            grid = MenuActivity.grids.get(MenuActivity.curLevel);
         } else {
-            grid = gen_random_level();
+            grid = genRandomLevel();
         }
     }
 
@@ -49,58 +45,58 @@ public class GameView extends View {
             int y = (int) ev.getY() - ty;
 
             if (grid.pushed(x, y)) {
-                particles.add_particles(10, x, y);
+                particles.addParticles(10, x, y);
             }
 
-            if (grid.is_empty()) {
-                if (MenuActivity.cur_level >= 0) {
-                    medal = grid.get_medal();
-                    grid.gen_grid();
+            if (grid.isEmpty()) {
+                if (MenuActivity.curLevel >= 0) {
+                    medal = grid.getMedal();
+                    grid.genGrid();
 
-                    MenuActivity.cur_level++;
+                    MenuActivity.curLevel++;
 
                     SharedPreferences.Editor editor = MenuActivity.prefs.edit();
 
-                    int cur_level_pref = MenuActivity.prefs.getInt("cur_level", 0);
+                    int curLevelPref = MenuActivity.prefs.getInt("cur_level", 0);
 
-                    if (cur_level_pref < MenuActivity.cur_level) {
-                        editor.putInt("cur_level", MenuActivity.cur_level);
+                    if (curLevelPref < MenuActivity.curLevel) {
+                        editor.putInt("cur_level", MenuActivity.curLevel);
                     }
 
                     String medals = MenuActivity.prefs.getString("medals", "");
                     String levels = MenuActivity.prefs.getString("levels", "");
 
-                    int prev_level = MenuActivity.cur_level - 1;
+                    int prevLevel = MenuActivity.curLevel - 1;
 
-                    if (Character.getNumericValue(medals.charAt(prev_level)) < medal.level) {
-                        medals = medals.substring(0, prev_level) + medal.level + medals.substring(MenuActivity.cur_level);
+                    if (Character.getNumericValue(medals.charAt(prevLevel)) < medal.level) {
+                        medals = medals.substring(0, prevLevel) + medal.level + medals.substring(MenuActivity.curLevel);
                     }
 
                     editor.putString("medals", medals);
                     editor.apply();
 
                     if (onWinLevel != null) {
-                        boolean no_final = onWinLevel.onWinLevel(this, MenuActivity.cur_level);
+                        boolean noFinal = onWinLevel.onWinLevel(this, MenuActivity.curLevel);
 
-                        if (!no_final) {
+                        if (!noFinal) {
                             return true;
                         }
                     }
 
-                    levels = levels.substring(0, MenuActivity.cur_level) + '1' + levels.substring(MenuActivity.cur_level + 1);
+                    levels = levels.substring(0, MenuActivity.curLevel) + '1' + levels.substring(MenuActivity.curLevel + 1);
 
                     editor.putString("levels", levels);
                     editor.commit();
 
-                    grid = MenuActivity.grids.get(MenuActivity.cur_level);
+                    grid = MenuActivity.grids.get(MenuActivity.curLevel);
                     onSizeChanged(getWidth(), getHeight(), getWidth(), getHeight());
                 } else {
-                    grid = gen_random_level();
+                    grid = genRandomLevel();
 
                     onSizeChanged(getWidth(), getHeight(), getWidth(), getHeight());
 
                     if (onWinLevel != null) {
-                        onWinLevel.onWinLevel(this, MenuActivity.cur_level);
+                        onWinLevel.onWinLevel(this, MenuActivity.curLevel);
                     }
                 }
             }
@@ -128,8 +124,8 @@ public class GameView extends View {
     public void resize(int w, int h) {
         grid.resize(w, h);
 
-        tx = getWidth() / 2 - grid.get_width() / 2;
-        ty = getHeight() / 2 - grid.get_height() / 2;
+        tx = getWidth() / 2 - grid.getWidth() / 2;
+        ty = getHeight() / 2 - grid.getHeight() / 2;
     }
 
     @Override
@@ -167,86 +163,90 @@ public class GameView extends View {
         invalidate();
     }
 
-    public Grid gen_random_level() {
+    public Grid genRandomLevel() {
         Random rand = new Random();
         rand.setSeed(new Random().nextInt(360));
         float[] hsl = {rand.nextInt(360), 1, 0.6f};
         int color = Color.HSVToColor(hsl);
 
-        int nb_columns, nb_rows;
+        int nbColumns, nbRows;
 
         Random r = new Random();
 
-        switch (MenuActivity.cur_level) {
+        switch (MenuActivity.curLevel) {
             case -1:
-                nb_columns = 2 + r.nextInt(3);
-                nb_rows = 2 + r.nextInt(3);
+                nbColumns = 2 + r.nextInt(3);
+                nbRows = 2 + r.nextInt(3);
                 break;
 
             case -2:
-                nb_columns = 3 + r.nextInt(2);
-                nb_rows = 3 + r.nextInt(2);
+                nbColumns = 3 + r.nextInt(2);
+                nbRows = 3 + r.nextInt(2);
                 break;
 
             case -3:
-                nb_columns = 3 + r.nextInt(3);
-                nb_rows = 3 + r.nextInt(3);
+                nbColumns = 3 + r.nextInt(3);
+                nbRows = 3 + r.nextInt(3);
                 break;
 
             case -4:
-                nb_columns = 4 + r.nextInt(2);
-                nb_rows = 4 + r.nextInt(2);
+                nbColumns = 4 + r.nextInt(2);
+                nbRows = 4 + r.nextInt(2);
                 break;
 
             case -5:
             default:
-                nb_columns = 5 + r.nextInt(2);
-                nb_rows = 5 + r.nextInt(2);
+                nbColumns = 5 + r.nextInt(2);
+                nbRows = 5 + r.nextInt(2);
         }
 
         ArrayList<Integer> cells = new ArrayList<>();
-        for (int i = 0; i < nb_columns * nb_rows; i++) {
+        for (int i = 0; i < nbColumns * nbRows; i++) {
             cells.add(0);
         }
 
-        grid = new Grid(nb_columns, nb_rows, 0, cells, color);
+        grid = new Grid(nbColumns, nbRows, 0, cells, color);
 
-        int nb_clicks;
+        int nbClicks;
 
-        switch (MenuActivity.cur_level) {
+        switch (MenuActivity.curLevel) {
             case -1:
-                nb_clicks = new Random().nextInt(3) + 2;
+                nbClicks = new Random().nextInt(3) + 2;
                 break;
 
             case -2:
-                nb_clicks = new Random().nextInt(2) + 5;
+                nbClicks = new Random().nextInt(2) + 5;
                 break;
 
             case -3:
-                nb_clicks = new Random().nextInt(3) + 6;
+                nbClicks = new Random().nextInt(3) + 6;
                 break;
 
             case -4:
-                nb_clicks = new Random().nextInt(7) + 18;
+                nbClicks = new Random().nextInt(7) + 18;
                 break;
 
             case -5:
             default:
-                nb_clicks = new Random().nextInt(15) + 26;
+                nbClicks = new Random().nextInt(15) + 26;
         }
 
-        grid.gen_grid();
+        grid.genGrid();
 
-        while (grid.is_empty()) {
-            grid.random_click(nb_clicks);
+        while (grid.isEmpty()) {
+            grid.randomClick(nbClicks);
         }
 
-        grid.orig_grid = grid.cells_to_intarray();
+        grid.origGrid = grid.cellsToIntarray();
 
         return grid;
     }
 
     public void setOnWinLevel(OnWinLevelListener l) {
         onWinLevel = l;
+    }
+
+    interface OnWinLevelListener {
+        boolean onWinLevel(View v, int level);
     }
 }

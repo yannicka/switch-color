@@ -8,54 +8,54 @@ import java.util.Random;
 import java.util.Stack;
 
 public class Grid {
-    public int nb_columns;
-    public int nb_rows;
-    public int nb_cells;
-    public int nb_clicks_gold;
-    public int nb_clicks_silver;
-    public int nb_clicks_bronze;
-    public int user_clicks;
-    public int cell_spacing;
-    public int cell_size_spacing;
     public Stack<Integer> actions;
-    public ArrayList<Cell> cells;
-    public ArrayList<Integer> orig_grid;
-    public int cell_size;
-    public int cell_color;
+    public ArrayList<Integer> origGrid;
+    private int nbColumns;
+    private int nbRows;
+    private int nbCells;
+    private int nbClicksGold;
+    private int nbClicksSilver;
+    private int nbClicksBronze;
+    private int userClicks;
+    private int cellSpacing;
+    private int cellSizeSpacing;
+    private ArrayList<Cell> cells;
+    private int cellSize;
+    private int cellColor;
 
-    public Grid(int nb_columns, int nb_rows, int nb_clicks, ArrayList<Integer> cells, int color) {
-        this.nb_columns = nb_columns;
-        this.nb_rows = nb_rows;
-        this.nb_cells = this.nb_columns * this.nb_rows;
+    public Grid(int nbColumns, int nbRows, int nb_clicks, ArrayList<Integer> cells, int color) {
+        this.nbColumns = nbColumns;
+        this.nbRows = nbRows;
+        this.nbCells = this.nbColumns * this.nbRows;
 
-        nb_clicks_gold = nb_clicks;
-        nb_clicks_silver = (int) Math.ceil(nb_clicks * 1.5);
-        nb_clicks_bronze = nb_clicks * 2;
-        user_clicks = 0;
+        nbClicksGold = nb_clicks;
+        nbClicksSilver = (int) Math.ceil(nb_clicks * 1.5);
+        nbClicksBronze = nb_clicks * 2;
+        userClicks = 0;
 
-        cell_spacing = 2;
-        cell_size = 50;
-        cell_size_spacing = cell_size + cell_spacing;
-        cell_color = color;
+        cellSpacing = 2;
+        cellSize = 50;
+        cellSizeSpacing = cellSize + cellSpacing;
+        cellColor = color;
 
         actions = new Stack<>();
 
-        orig_grid = new ArrayList<>(cells);
+        origGrid = new ArrayList<>(cells);
 
-        gen_grid();
+        genGrid();
     }
 
     // Génération des cellules de la grille
-    public void gen_grid() {
+    public void genGrid() {
         actions = new Stack<>();
-        user_clicks = 0;
+        userClicks = 0;
 
         cells = new ArrayList<>();
 
-        for (int i : orig_grid) {
+        for (int i : origGrid) {
             boolean active = i != 0;
 
-            cells.add(new Cell(active, cell_color));
+            cells.add(new Cell(active, cellColor));
         }
     }
 
@@ -68,25 +68,25 @@ public class Grid {
 
     // Redimensionnement des cellules de la grille
     public void resize(int width, int height) {
-        cell_size = (height - cell_spacing * (nb_rows - 1)) / nb_rows;
+        cellSize = (height - cellSpacing * (nbRows - 1)) / nbRows;
 
-        int game_width = cell_size * nb_columns + (cell_spacing * (nb_rows - 1));
+        int gameWidth = cellSize * nbColumns + (cellSpacing * (nbRows - 1));
 
-        if (game_width > width) {
-            cell_size = (width - cell_spacing * (nb_columns - 1)) / nb_columns;
+        if (gameWidth > width) {
+            cellSize = (width - cellSpacing * (nbColumns - 1)) / nbColumns;
         }
 
-        cell_size_spacing = cell_size + cell_spacing;
+        cellSizeSpacing = cellSize + cellSpacing;
 
         int i = cells.size();
         for (Cell cell : cells) {
             i--;
 
-            int x = (cells.size() - i - 1) % nb_columns * cell_size_spacing;
-            int y = Math.round((cells.size() - i - 1) / nb_columns) * cell_size_spacing;
+            int x = (cells.size() - i - 1) % nbColumns * cellSizeSpacing;
+            int y = Math.round((cells.size() - i - 1) / nbColumns) * cellSizeSpacing;
 
             cell.move(x, y);
-            cell.resize(cell_size);
+            cell.resize(cellSize);
         }
     }
 
@@ -94,11 +94,11 @@ public class Grid {
     public boolean pushed(int x, int y) {
         for (Cell cell : cells) {
             if (x > cell.x &&
-                    x <= cell.x + cell_size &&
+                    x <= cell.x + cellSize &&
                     y > cell.y &&
-                    y <= cell.y + cell_size
+                    y <= cell.y + cellSize
             ) {
-                cell_click(cells.indexOf(cell));
+                cellClick(cells.indexOf(cell));
 
                 return true;
             }
@@ -108,29 +108,29 @@ public class Grid {
     }
 
     // Action au clic d'une cellule
-    public void cell_click(int i) {
+    public void cellClick(int i) {
         actions.add(i);
-        user_clicks++;
+        userClicks++;
 
         ArrayList<Cell> neighbors = new ArrayList<>();
 
-        if (i - nb_columns >= 0 && i - nb_columns < cells.size()) {
-            neighbors.add(cells.get(i - nb_columns));
+        if (i - nbColumns >= 0 && i - nbColumns < cells.size()) {
+            neighbors.add(cells.get(i - nbColumns));
         }
 
         if (i >= 0 && i < cells.size()) {
             neighbors.add(cells.get(i));
         }
 
-        if (i + nb_columns >= 0 && i + nb_columns < cells.size()) {
-            neighbors.add(cells.get(i + nb_columns));
+        if (i + nbColumns >= 0 && i + nbColumns < cells.size()) {
+            neighbors.add(cells.get(i + nbColumns));
         }
 
-        if (i % nb_columns != 0 && i - 1 >= 0 && i - 1 < cells.size()) {
+        if (i % nbColumns != 0 && i - 1 >= 0 && i - 1 < cells.size()) {
             neighbors.add(cells.get(i - 1));
         }
 
-        if (i % nb_columns != nb_columns - 1 && i + 1 >= 0 && i + 1 < cells.size()) {
+        if (i % nbColumns != nbColumns - 1 && i + 1 >= 0 && i + 1 < cells.size()) {
             neighbors.add(cells.get(i + 1));
         }
 
@@ -141,24 +141,24 @@ public class Grid {
     }
 
     // Annuler la dernière action
-    public void cancel_last_action() {
-        int last_action = actions.pop();
-        cell_click(last_action);
-        user_clicks -= 2;
+    public void cancelLastZction() {
+        int lastAction = actions.pop();
+        cellClick(lastAction);
+        userClicks -= 2;
         actions.pop();
     }
 
     // Clic sur une cellule au hasard
-    public void random_click(int nb_clicks) {
-        for (int i = 0; i < nb_clicks; i++) {
-            cell_click(new Random().nextInt(nb_cells - 1));
+    public void randomClick(int nbClicks) {
+        for (int i = 0; i < nbClicks; i++) {
+            cellClick(new Random().nextInt(nbCells - 1));
         }
 
-        user_clicks -= nb_clicks;
+        userClicks -= nbClicks;
     }
 
     // La grille est-elle vide ?
-    public boolean is_empty() {
+    public boolean isEmpty() {
         boolean finished = true;
 
         for (Cell cell : cells) {
@@ -172,43 +172,47 @@ public class Grid {
     }
 
     // Récupérer la liste des cellules sous la forme d'un tableau d'entiers
-    public ArrayList<Integer> cells_to_intarray() {
+    public ArrayList<Integer> cellsToIntarray() {
         ArrayList<Integer> cells = new ArrayList<>();
 
-        for (Cell cell : this.cells)
+        for (Cell cell : this.cells) {
             cells.add(cell.active ? 1 : 0);
+        }
 
         return cells;
     }
 
     // Récupérer le code de la médaille
-    public Medal get_medal() {
-        if (this.user_clicks <= this.nb_clicks_gold)
+    public Medal getMedal() {
+        if (userClicks <= nbClicksGold) {
             return new Medal(3);
-        else if (this.user_clicks <= this.nb_clicks_silver)
+        } else if (userClicks <= nbClicksSilver) {
             return new Medal(2);
-        else if (this.user_clicks <= this.nb_clicks_bronze)
+        } else if (userClicks <= nbClicksBronze) {
             return new Medal(1);
-        else
+        } else {
             return new Medal(0);
+        }
     }
 
     // Récupérer la largeur de la grille
-    public int get_width() {
+    public int getWidth() {
         int width = 0;
 
-        for (int i = 0; i < nb_columns; i++)
-            width += cell_size_spacing;
+        for (int i = 0; i < nbColumns; i++) {
+            width += cellSizeSpacing;
+        }
 
         return width;
     }
 
     // Récupérer la hauteur de la grille
-    public int get_height() {
+    public int getHeight() {
         int height = 0;
 
-        for (int i = 0; i < nb_rows; i++)
-            height += cell_size_spacing;
+        for (int i = 0; i < nbRows; i++) {
+            height += cellSizeSpacing;
+        }
 
         return height;
     }

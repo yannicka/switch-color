@@ -8,8 +8,7 @@ import android.graphics.Paint;
 public class Medal {
     public int life;
     public int level;
-    public int color;
-    public Bitmap img;
+    private Bitmap img;
 
     public Medal(int medal) {
         this.level = medal;
@@ -44,9 +43,9 @@ public class Medal {
     public void draw(Canvas can, Paint p) {
         can.save();
 
-        int go_level = MenuActivity.cur_level;
+        int goLevel = MenuActivity.curLevel;
 
-        if (level >= 1 && level <= 3 && go_level >= 0) {
+        if (level >= 1 && level <= 3 && goLevel >= 0) {
             if (life < 100) {
                 p.setAlpha(life * 255 / 140);
             }

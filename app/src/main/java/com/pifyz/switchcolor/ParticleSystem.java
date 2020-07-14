@@ -9,16 +9,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ParticleSystem {
-    public ArrayList<Particle> particles;
+    private ArrayList<Particle> particles;
 
     public ParticleSystem() {
-        this.particles = new ArrayList<>();
+        particles = new ArrayList<>();
     }
 
     // Ajouter des particules
-    public void add_particles(int nb, int posx, int posy) {
+    public void addParticles(int nb, int posx, int posy) {
         for (int i = 0; i < nb; i++) {
-            this.particles.add(new Particle(
+            particles.add(new Particle(
                 posx,
                 posy,
                 -2 + (new Random().nextInt(5)), // [-2;2] dx
@@ -29,15 +29,15 @@ public class ParticleSystem {
 
     // Mettre à jour les particules
     public void update() {
-        int i = this.particles.size();
+        int i = particles.size();
 
         while (i-- > 0) {
-            Particle particle = this.particles.get(i);
+            Particle particle = particles.get(i);
 
             particle.update();
 
-            if (particle.life >= particle.max_life) {
-                this.particles.remove(i);
+            if (particle.life >= particle.maxLife) {
+                particles.remove(i);
             }
         }
     }
@@ -46,7 +46,7 @@ public class ParticleSystem {
     public void draw(Canvas can, @NotNull Paint p) {
         p.setColor(0xFFFFFFFF);
 
-        for (Particle particle : this.particles) {
+        for (Particle particle : particles) {
             particle.draw(can, p);
         }
     }

@@ -6,23 +6,24 @@ import android.graphics.Path;
 
 public class Cell {
     public int x, y;
-    public int size;
-    public int color;
     public int transition;
     public boolean active;
-    public String colorStr;
 
-    // Création de la cellule avec son état initial
+    private int size;
+    private int color;
+    private String hexColor;
+
+    // Créer la cellule dans son état initial
     public Cell(boolean active, int color) {
         this.active = active;
         this.color = color;
 
-        colorStr = Integer.toHexString(color);
+        hexColor = Integer.toHexString(color);
 
         transition = 0;
     }
 
-    // Affichage de la cellule à sa position
+    // Aifficher la cellule à sa position
     public void draw(Canvas can, Paint p) {
         if (transition > 0) {
             transition--;
@@ -46,13 +47,13 @@ public class Cell {
             int RI, BI, GI;
 
             if (active) {
-                R1 = Integer.parseInt(colorStr.substring(2, 4), 16);
-                G1 = Integer.parseInt(colorStr.substring(4, 6), 16);
-                B1 = Integer.parseInt(colorStr.substring(6, 8), 16);
+                R1 = Integer.parseInt(hexColor.substring(2, 4), 16);
+                G1 = Integer.parseInt(hexColor.substring(4, 6), 16);
+                B1 = Integer.parseInt(hexColor.substring(6, 8), 16);
             } else {
-                R2 = Integer.parseInt(colorStr.substring(2, 4), 16);
-                G2 = Integer.parseInt(colorStr.substring(4, 6), 16);
-                B2 = Integer.parseInt(colorStr.substring(6, 8), 16);
+                R2 = Integer.parseInt(hexColor.substring(2, 4), 16);
+                G2 = Integer.parseInt(hexColor.substring(4, 6), 16);
+                B2 = Integer.parseInt(hexColor.substring(6, 8), 16);
             }
 
             RI = R1 + (R2 - R1) * transition / 6;
@@ -65,10 +66,11 @@ public class Cell {
         can.drawRect(x, y, x + size, y + size, p);
 
         p.setARGB(13, 0, 0, 0);
+
         can.drawPath(effect, p);
     }
 
-    // Déplacement de la cellule sur les axes x et y
+    // Déplacer la cellule
     public void move(int x, int y) {
         this.x = x;
         this.y = y;

@@ -15,12 +15,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ChooseLevelActivity extends Activity {
     private AlertDialog dialog;
-    private CellLevelAdapter cell_adapter;
+    private CellLevelAdapter cellAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,28 +30,29 @@ public class ChooseLevelActivity extends Activity {
         setContentView(R.layout.activity_choose_level);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.txt_level_gen_random))
-                .setItems(R.array.levels, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        MenuActivity.cur_level = -1 * which - 1;
+        builder
+            .setTitle(getString(R.string.txt_level_gen_random))
+            .setItems(R.array.levels, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    MenuActivity.curLevel = -1 * which - 1;
 
-                        Intent intent = new Intent(ChooseLevelActivity.this, GameActivity.class);
-                        startActivity(intent);
-                    }
-                });
+                    Intent intent = new Intent(ChooseLevelActivity.this, GameActivity.class);
+                    startActivity(intent);
+                }
+            });
 
         dialog = builder.create();
 
         GridView gridView = findViewById(R.id.gridview);
-        cell_adapter = new CellLevelAdapter(this);
-        gridView.setAdapter(cell_adapter);
+        cellAdapter = new CellLevelAdapter(this);
+        gridView.setAdapter(cellAdapter);
         gridView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 TextView btn = v.findViewById(R.id.txt_level);
                 int level = Integer.parseInt((btn).getText().toString());
 
                 if (level <= MenuActivity.prefs.getInt("cur_level", 0) + 1) {
-                    MenuActivity.cur_level = level - 1;
+                    MenuActivity.curLevel = level - 1;
 
                     Intent intent = new Intent(ChooseLevelActivity.this, GameActivity.class);
                     startActivity(intent);
@@ -61,15 +62,15 @@ public class ChooseLevelActivity extends Activity {
             }
         });
 
-        ImageButton btn_back = findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(new View.OnClickListener() {
+        ImageButton btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }
         });
 
-        Button btn_random_level = findViewById(R.id.btn_random_level);
-        btn_random_level.setOnClickListener(new View.OnClickListener() {
+        Button btnRandomLevel = findViewById(R.id.btn_random_level);
+        btnRandomLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.show();
@@ -81,7 +82,7 @@ public class ChooseLevelActivity extends Activity {
     public void onResume() {
         super.onResume();
 
-        cell_adapter.notifyDataSetChanged();
+        cellAdapter.notifyDataSetChanged();
     }
 
     @Override

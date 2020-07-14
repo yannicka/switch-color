@@ -6,13 +6,13 @@ import android.graphics.Paint;
 import java.util.Random;
 
 public class Particle {
-    public int x;
-    public int y;
-    public int dx;
-    public int dy;
     public int life;
-    public int max_life;
-    public int size;
+    public int maxLife;
+    private int x;
+    private int y;
+    private int dx;
+    private int dy;
+    private int size;
 
     public Particle(int x, int y, int dx, int dy) {
         this.x = x;
@@ -21,8 +21,8 @@ public class Particle {
         this.dy = dy;
 
         life = 0;
-        max_life = 10 + (new Random().nextInt(11));
-        size = max_life;
+        maxLife = 10 + (new Random().nextInt(11));
+        size = maxLife;
     }
 
     // Mise à jour d'une particule
