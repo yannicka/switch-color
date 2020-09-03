@@ -141,7 +141,7 @@ public class Grid {
     }
 
     // Annuler la dernière action
-    public void cancelLastZction() {
+    public void cancelLastAction() {
         int lastAction = actions.pop();
         cellClick(lastAction);
         userClicks -= 2;

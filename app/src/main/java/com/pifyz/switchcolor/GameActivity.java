@@ -103,7 +103,7 @@ public class GameActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.btn_cancel_last_action:
-                game.grid.cancelLastZction();
+                game.grid.cancelLastAction();
                 return true;
 
             case R.id.btn_go_next_level:
