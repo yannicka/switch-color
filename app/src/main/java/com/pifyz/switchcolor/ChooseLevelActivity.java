@@ -18,6 +18,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ChooseLevelActivity extends Activity {
     private AlertDialog dialog;
     private CellLevelAdapter cellAdapter;
@@ -94,16 +97,20 @@ public class ChooseLevelActivity extends Activity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.btn_level_beginner:
-            case R.id.btn_level_medium:
-            case R.id.btn_level_easy:
-            case R.id.btn_level_difficult:
-            case R.id.btn_level_expert:
-                return true;
+        int itemId = item.getItemId();
 
-            default:
-                return super.onContextItemSelected(item);
+        List<?> allowedItems = Arrays.asList(
+            R.id.btn_level_beginner,
+            R.id.btn_level_easy,
+            R.id.btn_level_medium,
+            R.id.btn_level_difficult,
+            R.id.btn_level_expert
+        );
+
+        if (allowedItems.contains(itemId)) {
+            return true;
         }
+
+        return super.onContextItemSelected(item);
     }
 }

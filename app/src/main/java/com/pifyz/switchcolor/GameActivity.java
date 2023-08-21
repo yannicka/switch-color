@@ -101,40 +101,49 @@ public class GameActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.btn_cancel_last_action:
-                game.grid.cancelLastAction();
-                return true;
+        int itemId = item.getItemId();
 
-            case R.id.btn_go_next_level:
-                game.grid.genGrid();
-                MenuActivity.curLevel++;
+        if (itemId == R.id.btn_cancel_last_action) {
+            game.grid.cancelLastAction();
 
-                TextView curLevel = findViewById(R.id.cur_level);
-                String text = String.format(getResources().getString(R.string.cur_level), MenuActivity.curLevel + 1, MenuActivity.grids.size());
-                curLevel.setText(text);
-
-                game.grid = MenuActivity.grids.get(MenuActivity.curLevel);
-                game.resize();
-                return true;
-
-            case R.id.btn_restart_level:
-                game.grid.genGrid();
-                game.resize();
-                return true;
-
-            case R.id.btn_regen_level:
-                game.grid = game.genRandomLevel();
-                game.resize();
-                return true;
-
-            case R.id.btn_go_menu:
-                game.grid.genGrid();
-                finish();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+            return true;
         }
+
+        if (itemId == R.id.btn_go_next_level) {
+            game.grid.genGrid();
+            MenuActivity.curLevel++;
+
+            TextView curLevel = findViewById(R.id.cur_level);
+            String text = String.format(getResources().getString(R.string.cur_level), MenuActivity.curLevel + 1, MenuActivity.grids.size());
+            curLevel.setText(text);
+
+            game.grid = MenuActivity.grids.get(MenuActivity.curLevel);
+            game.resize();
+
+            return true;
+        }
+
+        if (itemId == R.id.btn_restart_level) {
+            game.grid.genGrid();
+            game.resize();
+
+            return true;
+        }
+
+        if (itemId == R.id.btn_regen_level) {
+            game.grid = game.genRandomLevel();
+            game.resize();
+
+            return true;
+        }
+
+        if (itemId == R.id.btn_go_menu) {
+            game.grid.genGrid();
+            finish();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
