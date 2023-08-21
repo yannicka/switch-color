@@ -148,7 +148,7 @@ public class Grid {
         actions.pop();
     }
 
-    // Clic sur une cellule au hasard
+    // Clique sur une cellule au hasard
     public void randomClick(int nbClicks) {
         for (int i = 0; i < nbClicks; i++) {
             cellClick(new Random().nextInt(nbCells - 1));

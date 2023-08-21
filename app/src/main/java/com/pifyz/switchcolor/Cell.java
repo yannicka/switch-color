@@ -23,7 +23,7 @@ public class Cell {
         transition = 0;
     }
 
-    // Aifficher la cellule à sa position
+    // Afficher la cellule à sa position
     public void draw(Canvas can, Paint p) {
         if (transition > 0) {
             transition--;

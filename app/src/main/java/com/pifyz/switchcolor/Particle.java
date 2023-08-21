@@ -21,7 +21,7 @@ public class Particle {
         this.dy = dy;
 
         life = 0;
-        maxLife = 10 + (new Random().nextInt(11));
+        maxLife = 35 + (new Random().nextInt(35));
         size = maxLife;
     }
 

@@ -20,7 +20,7 @@ public class ParticleSystem {
         for (int i = 0; i < nb; i++) {
             particles.add(new Particle(
                 posx,
-                posy,
+                posy - 20,
                 -2 + (new Random().nextInt(5)), // [-2;2] dx
                 5 + (new Random().nextInt(6)) // [5;10] dy
             ));
